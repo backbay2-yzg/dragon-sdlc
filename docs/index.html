@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dragon — 开源项目 Issue 到 Release 全自动 SDLC 桌面工作台</title>
+  <meta
+    name="description"
+    content="Dragon 是基于 Wails v3 + Go + React + Fluent UI 的开源自动化 SDLC 桌面工作台：从 GitHub Issue 自动拉取、多 Coding Agent 混用调度、隔离 Worktree 开发与测试自愈，到 PR / CI 盯守与 SemVer 发版列车。"
+  />
+  <meta property="og:title" content="Dragon — Automated Open-Source Issue-to-Release SDLC Studio" />
+  <meta
+    property="og:description"
+    content="7 阶段 SDLC 全自动流水线 · 15+ Coding Agent · Windows 11 Mica/Acrylic · Git Worktree 隔离 · 小白也能 5 分钟上手"
+  />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Sticky Frosted Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="#top" class="brand">
+        <img src="icon.png" alt="Dragon" />
+        <span>Dragon</span>
+        <span class="brand-tag">SDLC Studio</span>
+      </a>
+
+      <nav class="nav-links" aria-label="页面导航">
+        <a href="#features">核心亮点</a>
+        <a href="#sdlc">7 阶段 SDLC</a>
+        <a href="#gallery">界面预览</a>
+        <a href="#quickstart">5 步上手</a>
+        <a href="#install">安装运行</a>
+        <a href="#faq">常见问题</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button type="button" class="icon-btn" id="themeToggle" aria-label="切换浅色/深色主题">
+          <span id="themeIcon">🌙</span>
+          <span id="themeLabel">深色</span>
+        </button>
+        <a
+          class="icon-btn"
+          href="https://github.com/backbay2-yzg/dragon-sdlc"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub 源码
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-top">
+          <div class="badges">
+            <span class="badge brand">Wails v3.1.0 + Go 1.26 + React 19</span>
+            <span class="badge">15+ Coding Agent 自动发现</span>
+            <span class="badge">Windows 11 原生 Mica / Acrylic</span>
+            <span class="badge">小白 5 分钟即可上手</span>
+          </div>
+          <h1>开源项目 Issue 到 Release<br />全自动 SDLC 桌面工作台</h1>
+          <p class="hero-sub">
+            把「拉取 Issue → 拆解需求方案 → 隔离分支编码 → 测试自愈 → AI 交叉审查 → 提 PR 盯 CI → SemVer 批量发版」装进一个可视化桌面软件。可控、可审批、绝不弄乱你手头正在改的代码。
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#quickstart">🚀 小白 5 步快速上手</a>
+            <a class="btn" href="#install">🛠 零基础安装启动</a>
+            <a
+              class="btn"
+              href="https://github.com/backbay2-yzg/dragon-sdlc"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ⭐ 访问 GitHub 仓库
+            </a>
+          </div>
+        </div>
+
+        <div class="showcase-card">
+          <div class="showcase-bar">
+            <span class="showcase-caption" id="heroCaption">
+              工作台概览（浅色云母模式）· 一眼掌握运行中流水线、审批门禁、Issue 与发版列车（点击图片放大）
+            </span>
+            <div class="seg-tabs" role="tablist" aria-label="界面主题预览切换">
+              <button type="button" class="seg-tab active" data-hero-mode="light">浅色 Mica</button>
+              <button type="button" class="seg-tab" data-hero-mode="dark">深色 Mica</button>
+            </div>
+          </div>
+          <div class="showcase-img-wrap" id="heroPreviewWrap">
+            <img
+              id="heroPreviewImg"
+              src="images/01-dashboard.png"
+              alt="Dragon 工作台概览界面截图"
+              data-lightbox-title="Dragon 工作台概览"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Highlights -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>为什么选择 Dragon？</h2>
+          <p>专为个人维护者与开源团队打造：既享受 AI 自动写代码修 Bug 的效率，又牢牢掌握合并与发版的最终确认权。</p>
+        </div>
+
+        <div class="bento-grid">
+          <article class="card">
+            <div class="feature-icon">⚡</div>
+            <h3>零配额 ETag 轮询</h3>
+            <p>使用 GitHub <code>If-None-Match</code> 条件请求，仓库无变动返回 <code>304 Not Modified</code>，不消耗 API 限额；贴上 <code>dragon-auto</code> 标签自动入队。</p>
+          </article>
+          <article class="card">
+            <div class="feature-icon">🤖</div>
+            <h3>15+ Agent 自动发现</h3>
+            <p>内置 Claude Code、Codex（含桌面端内嵌 CLI）、Gemini CLI、Qoder、WorkBuddy、Antigravity 等自动识别，有原生登录态即可免配置使用。</p>
+          </article>
+          <article class="card">
+            <div class="feature-icon">🧠</div>
+            <h3>9 大供应商 + 自定义</h3>
+            <p>支持 Anthropic、OpenAI、Google、DeepSeek、Kimi、智谱 GLM、通义千问、MiniMax、OpenRouter 及本地 Ollama 兼容端点。</p>
+          </article>
+          <article class="card">
+            <div class="feature-icon">🧩</div>
+            <h3>7 阶段可编排 SDLC</h3>
+            <p>支持按阶段独立混用不同 Agent 与模型档位：Claude 出方案、Codex 编码与测试、Gemini 独立审查，告别单一模型盲区。</p>
+          </article>
+          <article class="card">
+            <div class="feature-icon">🩹</div>
+            <h3>测试 & CI 自动自愈</h3>
+            <p>本地构建/测试命令失败，或 GitHub Actions 检查红灯时，自动把错误日志回传给 Agent 修复重试，直到全部跑通。</p>
+          </article>
+          <article class="card">
+            <div class="feature-icon">🌿</div>
+            <h3>Git Worktree 物理隔离</h3>
+            <p>每次任务在仓库同级 <code>.dragon-worktrees</code> 开独立分支，支持 1~6 个任务并发，绝不覆盖你主目录里正在改的代码。</p>
+          </article>
+          <article class="card">
+            <div class="feature-icon">🚀</div>
+            <h3>SemVer 发版列车</h3>
+            <p>支持「单 PR 即时发版」与「批量发版列车」，自动按 Conventional Commits 推算 <code>major/minor/patch</code> 版本号与 Changelog。</p>
+          </article>
+          <article class="card">
+            <div class="feature-icon">🔒</div>
+            <h3>系统凭据库加密托管</h3>
+            <p>所有 GitHub Token 与模型 API Key 均加密存入 Windows Credential Manager，本地数据库不落盘任何明文密钥。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive 7-Stage SDLC -->
+    <section class="section" id="sdlc">
+      <div class="container">
+        <div class="section-header">
+          <h2>7 阶段 SDLC 自动化流水线与门禁机制</h2>
+          <p>点击下方任意阶段卡片，查看该步骤具体在做什么、产出什么文件以及如何自愈与把关。</p>
+        </div>
+
+        <div class="sdlc-box">
+          <div class="stage-rail" id="stageRail" role="tablist" aria-label="7 阶段 SDLC 流水线">
+            <button type="button" class="stage-pill active" data-stage="requirement">
+              <span class="stage-num">STAGE 01</span>
+              <span class="stage-name">需求分析</span>
+            </button>
+            <button type="button" class="stage-pill" data-stage="design">
+              <span class="stage-num">STAGE 02</span>
+              <span class="stage-name">方案设计</span>
+            </button>
+            <button type="button" class="stage-pill" data-stage="implementation">
+              <span class="stage-num">STAGE 03</span>
+              <span class="stage-name">编码实现</span>
+            </button>
+            <button type="button" class="stage-pill" data-stage="verification">
+              <span class="stage-num">STAGE 04</span>
+              <span class="stage-name">测试验证</span>
+            </button>
+            <button type="button" class="stage-pill" data-stage="ai_review">
+              <span class="stage-num">STAGE 05</span>
+              <span class="stage-name">AI 代码审查</span>
+            </button>
+            <button type="button" class="stage-pill" data-stage="pr_ci">
+              <span class="stage-num">STAGE 06</span>
+              <span class="stage-name">提交 PR 与 CI</span>
+            </button>
+            <button type="button" class="stage-pill" data-stage="merge_release">
+              <span class="stage-num">STAGE 07</span>
+              <span class="stage-name">合并与发布</span>
+            </button>
+          </div>
+
+          <div class="stage-detail" id="stageDetail">
+            <div>
+              <div class="step-num-pill" id="stageBadge">阶段 1 / 7 · 需求分析 (requirement)</div>
+              <h3 id="stageTitle" style="margin: 0 0 8px; font-size: 20px;">解析 Issue 背景、验收标准与边界条件</h3>
+              <p id="stageDesc" style="margin: 0; color: var(--text-muted); font-size: 14.5px;">
+                读取 GitHub Issue 正文、标签与仓库代码结构，把模糊描述拆解为可验证的验收标准清单（Acceptance Criteria），避免后续编码跑偏。
+              </p>
+            </div>
+            <div class="stage-meta">
+              <div class="stage-meta-row">
+                <span>自动产出文档</span>
+                <code id="stageArtifact">spec.md</code>
+              </div>
+              <div class="stage-meta-row">
+                <span>推荐分配角色</span>
+                <strong id="stageAgent">Claude Code (Sonnet)</strong>
+              </div>
+              <div class="stage-meta-row">
+                <span>默认门禁策略</span>
+                <span id="stageGate">自动通过（可自定义暂停）</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>审批门禁档位</th>
+                <th>适用场景</th>
+                <th>暂停人工确认的节点</th>
+                <th>小白推荐度</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>跟随模板门禁（推荐）</strong></td>
+                <td>日常开源维护、智能按复杂度分流</td>
+                <td>简单修复仅合并前确认；复杂修复额外在「方案设计」后确认</td>
+                <td>⭐⭐⭐⭐⭐ 默认首选</td>
+              </tr>
+              <tr>
+                <td><strong>仅合并前审批</strong></td>
+                <td>希望编码与修错全自动，合并前自己看一眼 Diff</td>
+                <td>仅在 <strong>阶段 7（合并与发布）</strong> 前暂停</td>
+                <td>⭐⭐⭐⭐ 省心稳妥</td>
+              </tr>
+              <tr>
+                <td><strong>多节点强审批</strong></td>
+                <td>核心生产库、高风险改动</td>
+                <td><strong>方案设计</strong>、<strong>提交 PR</strong>、<strong>合并发布</strong> 前均暂停</td>
+                <td>⭐⭐⭐ 严格把关</td>
+              </tr>
+              <tr>
+                <td><strong>全自动一条龙</strong></td>
+                <td>文档维护、低风险测试库或全托管实验仓库</td>
+                <td>无暂停（测试与 CI 全绿后自动合并发版）</td>
+                <td>⭐⭐ 进阶全托管</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full UI Gallery -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <h2>全功能界面实拍（点击任意卡片放大）</h2>
+          <p>覆盖从 GitHub 登录、仓库管理、Issue 准入、流水线日志与 Diff 审阅，到发版列车与多 Agent 路由的全部核心页面。</p>
+        </div>
+
+        <div class="gallery-controls">
+          <div class="seg-tabs" id="galleryTabs" role="tablist" aria-label="截图分类筛选">
+            <button type="button" class="seg-tab active" data-cat="all">全部 (16)</button>
+            <button type="button" class="seg-tab" data-cat="workspace">工作台与设置</button>
+            <button type="button" class="seg-tab" data-cat="repos">仓库与 Issue</button>
+            <button type="button" class="seg-tab" data-cat="pipeline">流水线与 Diff</button>
+            <button type="button" class="seg-tab" data-cat="agents">发版与 Agent 路由</button>
+          </div>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+          <article class="gallery-item" data-cat="workspace">
+            <div class="gallery-thumb"><img src="images/01-dashboard.png" alt="工作台概览（浅色 Mica）" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">工作台概览（浅色 Mica）</div>
+              <div class="gallery-desc">4 项实时 KPI 指标、待审批快捷卡片、运行中流水线与近期发版记录。</div>
+            </div>
+          </article>
+          <article class="gallery-item" data-cat="workspace">
+            <div class="gallery-thumb"><img src="images/02-dashboard-dark.png" alt="工作台概览（深色 Mica）" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">工作台概览（深色 Mica）</div>
+              <div class="gallery-desc">标题栏一键切换浅色/深色主题，原生支持 Windows 11 DWM 材质。</div>
+            </div>
+          </article>
+          <article class="gallery-item" data-cat="workspace">
+            <div class="gallery-thumb"><img src="images/03-github-auth.png" alt="GitHub 账号与授权管理" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">GitHub 三合一授权</div>
+              <div class="gallery-desc">支持一键复用本机 gh CLI、Fine-grained PAT 与 OAuth Device Flow。</div>
+            </div>
+          </article>
+          <article class="gallery-item" data-cat="workspace">
+            <div class="gallery-thumb"><img src="images/16-settings.png" alt="系统设置对话框" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">系统全局设置</div>
+              <div class="gallery-desc">配置默认工作区根目录、并发槽位上限 (1~6)、系统托盘驻留与 Toast 通知。</div>
+            </div>
+          </article>
+
+          <article class="gallery-item" data-cat="repos">
+            <div class="gallery-thumb"><img src="images/04-repos.png" alt="仓库管理列表" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">仓库管理中心</div>
+              <div class="gallery-desc">批量勾选或手动接入仓库，单行启停轮询、一键权限体检与直达本地目录。</div>
+            </div>
+          </article>
+          <article class="gallery-item" data-cat="repos">
+            <div class="gallery-thumb"><img src="images/05-repo-config.png" alt="仓库流程与策略配置" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">仓库流程与门禁配置</div>
+              <div class="gallery-desc">绑定本地目录或一键克隆、选择智能自动分流、设置审批档位与合并策略。</div>
+            </div>
+          </article>
+          <article class="gallery-item" data-cat="repos">
+            <div class="gallery-thumb"><img src="images/06-issues.png" alt="Issue 待办与准入队列" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">Issue 待办与准入队列</div>
+              <div class="gallery-desc">自动识别命中 <code>dragon-auto</code> 标签的 Issue，支持搜索、筛选与忽略。</div>
+            </div>
+          </article>
+          <article class="gallery-item" data-cat="repos">
+            <div class="gallery-thumb"><img src="images/07-issue-launch.png" alt="启动 SDLC 自动化流水线预览" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">智能路由预览与一键启动</div>
+              <div class="gallery-desc">发车前展示推荐模板与 Agent 依据，支持临时手动覆写模板或执行人。</div>
+            </div>
+          </article>
+
+          <article class="gallery-item" data-cat="pipeline">
+            <div class="gallery-thumb"><img src="images/08-pipeline-approval.png" alt="流水线监控与人工审批门禁" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">流水线监控与人工审批门禁</div>
+              <div class="gallery-desc">7 阶段进度条、实时流式终端日志、批准继续或输入修改意见打回重做。</div>
+            </div>
+          </article>
+          <article class="gallery-item" data-cat="pipeline">
+            <div class="gallery-thumb"><img src="images/09-pipeline-artifacts.png" alt="阶段产物 Markdown 阅读器" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">阶段产物 Markdown 阅读</div>
+              <div class="gallery-desc">内置阅读 AI 产出的 <code>spec.md</code>、<code>plan.md</code> 与 <code>review.md</code>。</div>
+            </div>
+          </article>
+          <article class="gallery-item" data-cat="pipeline">
+            <div class="gallery-thumb"><img src="images/10-pipeline-diff.png" alt="代码变更 Diff 审查视图" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">代码变更 Diff 逐行审阅</div>
+              <div class="gallery-desc">按变更文件切换红绿高亮 Diff，合并前在软件内完成最后把关。</div>
+            </div>
+          </article>
+
+          <article class="gallery-item" data-cat="agents">
+            <div class="gallery-thumb"><img src="images/11-releases.png" alt="发版列车与 Release 中心" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">发版列车与 Release 中心</div>
+              <div class="gallery-desc">聚合已合并 PR，自动计算 SemVer 与 Changelog，支持 Draft/Pre-release 与 Actions 追踪。</div>
+            </div>
+          </article>
+          <article class="gallery-item" data-cat="agents">
+            <div class="gallery-thumb"><img src="images/12-agents.png" alt="Coding Agent 自动探测与 Profiles" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">Agent 自动发现与 Profiles</div>
+              <div class="gallery-desc">15+ CLI 一键只读测试调用，底部 <code>Budget / Balanced / Focus</code> 一键切换配置快照。</div>
+            </div>
+          </article>
+          <article class="gallery-item" data-cat="agents">
+            <div class="gallery-thumb"><img src="images/13-providers.png" alt="模型供应商配置中心" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">9 大模型供应商托管</div>
+              <div class="gallery-desc">管理 Base URL、模型目录并安全加密保存 API Key 至 Windows 凭据管理器。</div>
+            </div>
+          </article>
+          <article class="gallery-item" data-cat="agents">
+            <div class="gallery-thumb"><img src="images/14-routing.png" alt="7 阶段路由矩阵与实时模拟器" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">7 阶段路由矩阵与模拟器</div>
+              <div class="gallery-desc">按阶段独立混用 Agent/Tier，配置正则规则并 Dry-Run 实时预览分配结果。</div>
+            </div>
+          </article>
+          <article class="gallery-item" data-cat="agents">
+            <div class="gallery-thumb"><img src="images/15-templates.png" alt="SDLC 流水线模板管理" loading="lazy" /></div>
+            <div class="gallery-body">
+              <div class="gallery-title">SDLC 流水线模板管理</div>
+              <div class="gallery-desc">内置快车道、复杂修复、完整功能与文档维护 4 套模板，可自由新增自定义流程。</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5-Step Beginner Quickstart -->
+    <section class="section" id="quickstart">
+      <div class="container">
+        <div class="section-header">
+          <h2>小白 5 步快速上手</h2>
+          <p>第一次打开 Dragon？按顺序跟着这 5 步走，5 分钟内就能跑通属于你的第一条全自动 Issue → PR 流水线。</p>
+        </div>
+
+        <div class="steps-list">
+          <div class="step-card">
+            <div class="step-content">
+              <span class="step-num-pill">STEP 1 · 1 分钟</span>
+              <h3>连接 GitHub 账号</h3>
+              <ol>
+                <li>点击界面左下角的 <strong>GitHub 账号卡片</strong>，打开授权窗口。</li>
+                <li>如果你装过 GitHub CLI，直接点 <strong>「检测并复用 gh CLI 登录态」</strong> 秒完成。</li>
+                <li>如果用令牌：在 GitHub 创建 Fine-grained PAT，勾选目标仓库的 <code>Contents (R/W)</code>、<code>Issues (R/W)</code>、<code>Pull requests (R/W)</code> 与 <code>Actions (Read)</code>，粘贴后点「保存并验证」。</li>
+              </ol>
+            </div>
+            <div class="step-shot"><img src="images/03-github-auth.png" alt="步骤 1 连接 GitHub" loading="lazy" /></div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-content">
+              <span class="step-num-pill">STEP 2 · 1 分钟</span>
+              <h3>检测本机 AI Coding Agent</h3>
+              <ol>
+                <li>打开左侧 <strong>「Agent 与路由」</strong>，已安装的工具会自动亮绿灯置顶显示。</li>
+                <li>如果你已在终端登录过（如 <code>claude</code>、<code>codex login</code>、<code>qodercli login</code>），直接点右侧 <strong>「测试调用」</strong> 验证连通性即可。</li>
+                <li>如需接入 DeepSeek、Kimi 等 API，切到 <strong>「Providers」</strong> 填入 Key 并为 Agent 选择对应模型。</li>
+              </ol>
+            </div>
+            <div class="step-shot"><img src="images/12-agents.png" alt="步骤 2 检测 Agent" loading="lazy" /></div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-content">
+              <span class="step-num-pill">STEP 3 · 1 分钟</span>
+              <h3>设置工作区根目录并接入仓库</h3>
+              <ol>
+                <li>点击左下角 <strong>⚙ 系统设置</strong>，设定一个统一父目录（如 <code>D:\DragonWorkspaces</code>）。</li>
+                <li>切换到左侧 <strong>「仓库管理」</strong> → 点击右上角 <strong>「+ 接入仓库」</strong>。</li>
+                <li>直接勾选你的 GitHub 个人或组织仓库一键批量接入，或手动输入任意开源仓库 <code>owner/repo</code>。</li>
+              </ol>
+            </div>
+            <div class="step-shot"><img src="images/04-repos.png" alt="步骤 3 接入仓库" loading="lazy" /></div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-content">
+              <span class="step-num-pill">STEP 4 · 1 分钟</span>
+              <h3>配置仓库工作区、门禁与测试命令</h3>
+              <ol>
+                <li>点击仓库行右侧 <strong>「配置」</strong>，确认本地目录（新目录点「立即克隆」即可拉取）。</li>
+                <li>推荐保持 <strong>「智能自动分流」</strong> 与 <strong>「跟随模板门禁」</strong>，安全可控不踩坑。</li>
+                <li>在 <strong>「构建与回写」</strong> 页填入测试命令（如 <code>go test ./...</code> 或 <code>pnpm test</code>），AI 跑失败会自动读日志自我修复。</li>
+              </ol>
+            </div>
+            <div class="step-shot"><img src="images/05-repo-config.png" alt="步骤 4 配置仓库" loading="lazy" /></div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-content">
+              <span class="step-num-pill">STEP 5 · 1 分钟</span>
+              <h3>启动流水线、审阅 Diff 并一键发版</h3>
+              <ol>
+                <li>到 <strong>「Issue 队列」</strong> 对任意待办 Issue 点 <strong>「启动自动化流」</strong>（或给 Issue 贴上 <code>dragon-auto</code> 标签自动触发）。</li>
+                <li>在 <strong>「SDLC 流水线」</strong> 实时看日志、读 <code>spec.md / review.md</code> 与红绿代码 Diff，确认无误点 <strong>「批准并继续执行」</strong> 合并 PR。</li>
+                <li>最后到 <strong>「发版列车」</strong> 确认自动算好的版本号与 Changelog，点击 <strong>「发布 GitHub Release」</strong> 收官！</li>
+              </ol>
+            </div>
+            <div class="step-shot"><img src="images/08-pipeline-approval.png" alt="步骤 5 审批合并与发版" loading="lazy" /></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prerequisites & Install -->
+    <section class="section" id="install">
+      <div class="container">
+        <div class="section-header">
+          <h2>零基础环境安装与源码编译</h2>
+          <p>按表格确认电脑已装好以下基础软件，然后在 Windows PowerShell 复制运行下方命令即可。</p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>软件工具</th>
+                <th>版本要求</th>
+                <th>检查命令</th>
+                <th>用途说明</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Git</strong></td>
+                <td>2.30+</td>
+                <td><code>git --version</code></td>
+                <td>拉取仓库、创建隔离 Worktree 与生成代码 Diff</td>
+              </tr>
+              <tr>
+                <td><strong>Go</strong></td>
+                <td>1.26+</td>
+                <td><code>go version</code></td>
+                <td>编译运行 Dragon 后端多阶段调度引擎</td>
+              </tr>
+              <tr>
+                <td><strong>Node.js &amp; pnpm</strong></td>
+                <td>Node 20+ / pnpm 9+</td>
+                <td><code>node -v &amp;&amp; pnpm -v</code></td>
+                <td>安装前端依赖与构建 React + Fluent UI 界面</td>
+              </tr>
+              <tr>
+                <td><strong>Wails v3 CLI</strong></td>
+                <td>v3.1.0</td>
+                <td><code>wails3 version</code></td>
+                <td>热重载调试与打包单文件 Windows 可执行程序</td>
+              </tr>
+              <tr>
+                <td><strong>GitHub CLI (可选)</strong></td>
+                <td>最新版</td>
+                <td><code>gh --version</code></td>
+                <td>推荐安装，1 秒自动复用本机 GitHub 登录态</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-grid">
+          <div class="code-block">
+            <div class="code-head">
+              <span>PowerShell · 1. 安装 Wails v3 CLI（仅首次需要）</span>
+              <button type="button" class="copy-btn">复制命令</button>
+            </div>
+            <pre>go install github.com/wailsapp/wails/v3/cmd/wails3@v3.1.0</pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span>PowerShell · 2. 克隆源码、安装依赖并启动 / 打包</span>
+              <button type="button" class="copy-btn">复制命令</button>
+            </div>
+            <pre>git clone https://github.com/backbay2-yzg/dragon-sdlc.git
+cd dragon-sdlc
+pnpm --dir frontend install
+
+# 开发模式（支持热重载调试）
+wails3 task dev PACKAGE_MANAGER=pnpm
+
+# 或直接编译正式版单文件可执行程序（输出至 bin\dragon.exe）
+wails3 task build PACKAGE_MANAGER=pnpm</pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span>PowerShell · 3. 运行全套后端单元测试</span>
+              <button type="button" class="copy-btn">复制命令</button>
+            </div>
+            <pre>go test ./...</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <h2>小白常见问题排查 (FAQ)</h2>
+          <p>遇到提示不知道怎么处理？先看看下面这 8 条高频解答。</p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>1. 启动流水线提示“尚未配置本地工作区目录”怎么办？</summary>
+            <p>点提示中的「前往配置工作区」（或进入 <code>仓库管理 → 配置</code>），填写一个空文件夹点「立即克隆」，或直接选择本机已克隆好的项目文件夹即可。</p>
+          </details>
+          <details class="faq-item">
+            <summary>2. 电脑里装了 Claude / Codex / WorkBuddy 但显示未检测到或需登录？</summary>
+            <p>确认命令行在系统 <code>PATH</code> 中（或在 Agent 详情弹窗手动填入可执行文件完整路径后点「扫描本机」）；若提示需登录，按弹窗「安装与登录指引」在终端执行一次登录命令，或在 Providers 配好 API Key。</p>
+          </details>
+          <details class="faq-item">
+            <summary>3. AI 会不会不小心把半成品代码直接合并进我的主分支？</summary>
+            <p>不会。默认「跟随模板门禁」以及「仅合并前审批」「多节点强审批」都会在合并前强行暂停并弹窗通知，必须由你亲自看完 Diff 点「批准并继续执行」才会合并。</p>
+          </details>
+          <details class="faq-item">
+            <summary>4. 流水线运行期间，我在自己原目录改代码会冲突吗？</summary>
+            <p>不会。Dragon 始终通过 <code>git worktree</code> 在同级 <code>.dragon-worktrees</code> 隔离目录与独立分支操作，绝对不会改动你正在写的主目录。</p>
+          </details>
+          <details class="faq-item">
+            <summary>5. 后台定时轮询 GitHub Issue 会不会耗尽 API 每小时配额？</summary>
+            <p>不会。每次请求都带 <code>ETag</code> 条件头，无新变动时 GitHub 返回 <code>304 Not Modified</code>，官方不扣减任何 API 配额。</p>
+          </details>
+          <details class="faq-item">
+            <summary>6. GitHub Token 和 API Key 存在哪里，安全吗？</summary>
+            <p>所有 Token 与 Key 全部通过系统安全接口加密存入 <strong>Windows Credential Manager</strong>，软件目录与 SQLite 数据库中不存储任何明文凭据。</p>
+          </details>
+          <details class="faq-item">
+            <summary>7. 切换了 Mica / Mica Alt / Acrylic 背景材质为什么没有立刻变？</summary>
+            <p>浅色/深色主题会立即生效；Windows 11 底层 DWM 窗口材质需在窗口创建时注册，更改后请托盘右键「退出 Dragon」再重新打开即可完整生效。</p>
+          </details>
+          <details class="faq-item">
+            <summary>8. 想重置全部本地数据重新开始，数据文件在哪里？</summary>
+            <p>本地数据库、镜像与阶段产物日志默认存于 <code>%LOCALAPPDATA%\Dragon</code>。退出应用后删除该文件夹即可恢复全新初始状态。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Dragon SDLC Studio</strong> · 基于 Wails v3、Go、React 19 与 Fluent UI v9 构建
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/backbay2-yzg/dragon-sdlc" target="_blank" rel="noopener noreferrer">GitHub 仓库</a>
+        <a href="https://github.com/backbay2-yzg/dragon-sdlc/issues" target="_blank" rel="noopener noreferrer">提交 Issue</a>
+        <a href="https://github.com/backbay2-yzg/dragon-sdlc/blob/main/README.md" target="_blank" rel="noopener noreferrer">README 文档</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Fullscreen Lightbox Modal -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="图片放大预览">
+    <div class="lightbox-inner">
+      <div class="lightbox-bar">
+        <span class="lightbox-title" id="lightboxTitle">预览</span>
+        <div class="lightbox-actions">
+          <button type="button" class="lightbox-btn" id="lightboxPrev">← 上一张</button>
+          <button type="button" class="lightbox-btn" id="lightboxNext">下一张 →</button>
+          <button type="button" class="lightbox-btn" id="lightboxClose">关闭 (ESC)</button>
+        </div>
+      </div>
+      <div class="lightbox-img-box">
+        <img id="lightboxImg" src="" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

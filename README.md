@@ -6,13 +6,14 @@
 
 **让开源仓库维护彻底告别繁琐重复劳动：从 GitHub Issue 自动拉取、多 AI Coding Agent 智能调度、隔离分支开发与测试自愈，到 PR 提交、CI 盯守与 SemVer 发版列车，一站式全自动完成。**
 
+[![在线文档官网](https://img.shields.io/badge/Docs-GitHub_Pages-0F6CBD?style=flat-square&logo=githubpages)](https://backbay2-yzg.github.io/dragon-sdlc/)
 [![Go Version](https://img.shields.io/badge/Go-1.26+-00ADD8?style=flat-square&logo=go)](https://go.dev/)
 [![Wails v3](https://img.shields.io/badge/Wails-v3.1.0-DF0000?style=flat-square)](https://v3.wails.io/)
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev/)
 [![Fluent UI 2](https://img.shields.io/badge/Fluent_UI-v9-0F6CBD?style=flat-square)](https://react.fluentui.dev/)
 [![Windows 11 Mica](https://img.shields.io/badge/Windows_11-Mica_%2F_Acrylic-0078D4?style=flat-square&logo=windows)](https://learn.microsoft.com/windows/apps/design/style/mica)
 
-[核心亮点](#-核心亮点) · [零基础环境安装](#-零基础环境安装与启动小白必看) · [5分钟快速上手](#-小白-5-步快速上手教程) · [全功能图文详解](#-全功能图文详解) · [项目架构](#-项目架构与目录说明) · [常见问题](#-小白常见问题排查-faq)
+[🌐 在线文档官网](https://backbay2-yzg.github.io/dragon-sdlc/) · [核心亮点](#-核心亮点) · [零基础环境安装](#-零基础环境安装与启动小白必看) · [5分钟快速上手](#-小白-5-步快速上手教程) · [全功能图文详解](#-全功能图文详解) · [项目架构](#-项目架构与目录说明) · [常见问题](#-小白常见问题排查-faq)
 
 </div>
 
