@@ -1,0 +1,14 @@
+.task
+.wails
+bin
+frontend/dist
+frontend/node_modules
+*.syso
+.env
+.env.*
+*.db
+*.db-wal
+*.db-shm
+.DS_Store
+Thumbs.db
+build/windows/nsis/*.exe
